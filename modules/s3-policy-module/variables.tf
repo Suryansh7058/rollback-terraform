@@ -5,3 +5,7 @@ variable "oai_iam_arn" {
 variable "s3_arn" {
   type = string
 }
+
+variable "s3_id" {
+  type = string
+}

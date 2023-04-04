@@ -6,17 +6,31 @@ terraform {
     }
   }
 }
-data "aws_iam_policy_document" "cloudfront_OAI" {
+# data "aws_iam_policy_document" "cloudfront_OAI" {
+#   statement {
+#     sid = "Accessed only by cloudfront"
+#
+#     actions = [
+#       "s3:GetObject",
+#       "s3:GetObjectAcl",
+#       "s3:GetBucketLocation",
+#       "s3:ListBucket",
+#     ]
+#
+#     resources = [
+#       "${var.s3_arn}/*"
+#     ]
+#
+#     principals {
+#       type        = "AWS"
+#       identifiers = [var.oai_iam_arn]
+#     }
+#   }
+# }
+
+data "aws_iam_policy_document" "s3_policy" {
   statement {
-    sid = "Accessed only by cloudfront"
-
-    actions = [
-      "s3:GetObject",
-      "s3:GetObjectAcl",
-      "s3:GetBucketLocation",
-      "s3:ListBucket",
-    ]
-
+    actions = ["s3:GetObject"]
     resources = [
       "${var.s3_arn}/*"
     ]
@@ -27,8 +41,7 @@ data "aws_iam_policy_document" "cloudfront_OAI" {
     }
   }
 }
-
 resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = var.s3_id
-  policy = data.aws_iam_policy_document.cloudfront_OAI.json
+  policy = data.aws_iam_policy_document.s3_policy.json
 }
