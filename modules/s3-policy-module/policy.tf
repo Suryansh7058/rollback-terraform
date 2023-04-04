@@ -8,7 +8,7 @@ terraform {
 }
 data "aws_iam_policy_document" "cloudfront_OAI" {
   statement {
-    sid = "Satement1"
+    sid = "Accessed only by cloudfront"
 
     actions = [
       "s3:GetObject",
@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "cloudfront_OAI" {
     ]
 
     resources = [
-      "${var.s3_arn}/*",
+      "${var.s3_arn}/*"
     ]
 
     principals {
@@ -29,6 +29,6 @@ data "aws_iam_policy_document" "cloudfront_OAI" {
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = var.s3_arn
+  bucket = var.s3_id
   policy = data.aws_iam_policy_document.cloudfront_OAI.json
 }

@@ -23,4 +23,5 @@ module "s3policy" {
   source      = "./modules/s3-policy-module/"
   oai_iam_arn = module.cloudfront.oai_arn
   s3_arn      = module.rollback-s3.bucket_arn
+  s3_id       = module.rollback-s3.bucket_id
 }
