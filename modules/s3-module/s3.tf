@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.0"
+    }
+  }
+}
+
 resource "aws_s3_bucket" "bucket" {
   bucket = local.bucket_name
 }
@@ -16,8 +25,3 @@ resource "aws_s3_bucket_acl" "acl" {
   acl    = "private"
 }
 
-data "aws_iam_policy_document" "policy" {
-  policy = jsonencode({
-
-  })
-}
