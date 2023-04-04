@@ -58,3 +58,7 @@ resource "aws_cloudfront_distribution" "cloudfront-dist" {
     cloudfront_default_certificate = true
   }
 }
+
+output "oai_arn" {
+  value = aws_cloudfront_origin_access_identity.OAI.iam_arn
+}
