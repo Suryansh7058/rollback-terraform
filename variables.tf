@@ -14,5 +14,5 @@ variable "origin_id" {
 }
 
 locals {
-  s3_bucket_name = "${project_name}-${environment}"
+  s3_bucket_name = "${var.project_name}-${var.environment}"
 }

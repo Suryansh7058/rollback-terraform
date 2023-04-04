@@ -8,8 +8,8 @@ terraform {
 }
 
 module "rollback-s3" {
-  source = "./modules/s3-module/"
-  bucket = local.s3_bucket_name
+  source         = "./modules/s3-module/"
+  s3_bucket_name = local.s3_bucket_name
 }
 
 module "cloudfront" {
